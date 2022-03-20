@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import ItemsRow from "../itemsRow/ItemsRow";
+import FormsRow from "../formsRow/FormsRow";
 
 import steles from "../../data/steles.json";
 import pedestals from "../../data/pedestals.json";
 import borders from "../../data/borders.json";
+import forms from "../../data/forms.json";
 
 import "./main.css";
 
@@ -39,18 +41,15 @@ function Main() {
       </h1>
 
       <div className="container">
+        <hr />
         <ItemsRow
           name={"Стела: "}
           type={"stele"}
           data={steles}
           onCostChange={onCostChange}
         ></ItemsRow>
-        <ItemsRow
-          name={"Изготовление формы: "}
-          type={"form"}
-          data={steles}
-          onCostChange={onCostChange}
-        ></ItemsRow>
+        <FormsRow data={forms}></FormsRow>
+        <hr />
         <ItemsRow
           name={"Тумба: "}
           type={"pedestal"}
@@ -81,12 +80,14 @@ function Main() {
           data={borders}
           onCostChange={onCostChange}
         ></ItemsRow>
-
+        <hr />
         <div className="row align-items-start">
           <div className="col">Общая стоимость:</div>
-          <div className="col">{totalCost}</div>
+          <div className="col">{totalCost} р.</div>
           <div className="col">
-            <button>Заказать</button>
+            <button type="button" className="btn btn-success">
+              Заказать
+            </button>
           </div>
         </div>
       </div>

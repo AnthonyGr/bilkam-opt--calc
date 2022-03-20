@@ -13,7 +13,7 @@ const ItemsRow = ({ name, type, data, onCostChange }) => {
 
     return (
       <select
-        className="form-select mb-10"
+        className="form-select mb-3"
         aria-label="Default select example"
         data-type={type}
         onChange={onSelectChange}
@@ -35,9 +35,9 @@ const ItemsRow = ({ name, type, data, onCostChange }) => {
   const element = fillSelect();
   return (
     <div className="row align-items-start">
-      <div className="col">{name}</div>
+      <div className="col fs-5">{name}</div>
       <div className="col">{element}</div>
-      <div className="col">{currentPrice}</div>
+      <div className="col fs-5 text-secondary">{currentPrice}</div>
     </div>
   );
 };
