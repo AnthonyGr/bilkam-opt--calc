@@ -2,10 +2,11 @@ import { useState } from "react";
 
 const ItemsRow = ({ name, type, data, onCostChange }) => {
   const [selectedItem, setSelectedItem] = useState(0);
+  const [currentPrice, setCurrentPrice] = useState(0);
 
   const fillSelect = () => {
     const items = data.map((item, i) => (
-      <option key={i} value={item.price}>
+      <option key={i} data-price={item.price} value={item.name}>
         {item.name}
       </option>
     ));
@@ -18,15 +19,17 @@ const ItemsRow = ({ name, type, data, onCostChange }) => {
         onChange={onSelectChange}
         value={selectedItem}
       >
-        <option value="0">Не выбрано</option>
+        <option>Не выбрано</option>
         {items}
       </select>
     );
   };
 
   const onSelectChange = (e) => {
+    const price = e.target[e.target.selectedIndex].getAttribute("data-price");
     setSelectedItem(e.target.value);
-    onCostChange(e.target.getAttribute("data-type"), e.target.value);
+    setCurrentPrice(price);
+    onCostChange(e.target.getAttribute("data-type"), price);
   };
 
   const element = fillSelect();
@@ -34,7 +37,7 @@ const ItemsRow = ({ name, type, data, onCostChange }) => {
     <div className="row align-items-start">
       <div className="col">{name}</div>
       <div className="col">{element}</div>
-      <div className="col">{selectedItem}</div>
+      <div className="col">{currentPrice}</div>
     </div>
   );
 };
