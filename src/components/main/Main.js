@@ -48,8 +48,6 @@ function Main() {
           data={steles}
           onCostChange={onCostChange}
         ></ItemsRow>
-        <FormsRow data={forms}></FormsRow>
-        <hr />
         <ItemsRow
           name={"Тумба: "}
           type={"pedestal"}
@@ -74,12 +72,8 @@ function Main() {
           data={borders}
           onCostChange={onCostChange}
         ></ItemsRow>
-        <ItemsRow
-          name={"Цветник 4: "}
-          type={"border-4"}
-          data={borders}
-          onCostChange={onCostChange}
-        ></ItemsRow>
+        <hr />
+        <FormsRow data={forms}></FormsRow>
         <hr />
         <div className="row align-items-start">
           <div className="col">Общая стоимость:</div>

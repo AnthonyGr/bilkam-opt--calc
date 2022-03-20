@@ -20,15 +20,20 @@ const FormsRow = ({ data }) => {
     ));
 
     return (
-      <select
-        className="form-select mb-3"
-        aria-label="Default select example"
-        onChange={onFormSelect}
-        value={currentForm}
-      >
-        <option>Не выбрано</option>
-        {items}
-      </select>
+      <div class="form-floating">
+        <select
+          className="form-select mb-3"
+          aria-label="Default select example"
+          onChange={onFormSelect}
+          value={currentForm}
+        >
+          <option>Не выбрано</option>
+          {items}
+        </select>
+        <label className="fs-6" for="floatingSelect">
+          Изготовление формы:
+        </label>
+      </div>
     );
   };
 
@@ -51,14 +56,20 @@ const FormsRow = ({ data }) => {
     });
 
     return (
-      <select
-        className="form-select mb-3"
-        aria-label="Default select example"
-        onChange={onSizeSelect}
-      >
-        <option data-price="0">Не выбрано</option>
-        {items}
-      </select>
+      <div class="form-floating">
+        <select
+          className="form-select mb-3"
+          id="floatingSelect"
+          aria-label="Default select example"
+          onChange={onSizeSelect}
+        >
+          <option data-price="0">Не выбрано</option>
+          {items}
+        </select>
+        <label className="fs-6" for="floatingSelect">
+          Размер стелы:
+        </label>
+      </div>
     );
   };
 
@@ -75,10 +86,10 @@ const FormsRow = ({ data }) => {
 
   const formsSelect = fillForms();
   return (
-    <div className="row align-items-start">
+    <div className="row align-items-start d-flex align-items-center">
       <div className="col fs-5">{formsSelect}</div>
       <div className="col">{currentFormSizes}</div>
-      <div className="col fs-5 text-secondary">{currentPrice}</div>
+      <div className="col fs-5 text-secondary ">{currentPrice}</div>
     </div>
   );
 };

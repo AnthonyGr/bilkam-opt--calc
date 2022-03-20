@@ -19,7 +19,7 @@ const ItemsRow = ({ name, type, data, onCostChange }) => {
         onChange={onSelectChange}
         value={selectedItem}
       >
-        <option>Не выбрано</option>
+        <option data-price="0">Не выбрано</option>
         {items}
       </select>
     );
