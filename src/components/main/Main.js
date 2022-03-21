@@ -28,6 +28,10 @@ function Main() {
     setTotalCost(cost);
   };
 
+  const onOrderSubmit = () => { 
+    alert(`Вы можете связаться с нами по телефонам: \n 8 963 074 44 47    8 908 939 97 86 \n opt@bilkam.ru`)
+  }
+
   useEffect(() => {
     calcOrderCost();
   });
@@ -73,14 +77,17 @@ function Main() {
           onCostChange={onCostChange}
         ></ItemsRow>
         <hr />
-        <FormsRow data={forms}></FormsRow>
+        <FormsRow data={forms} type={"form"} onCostChange={onCostChange}></FormsRow>
         <hr />
         <div className="row align-items-start">
           <div className="col">Общая стоимость:</div>
           <div className="col">{totalCost} р.</div>
           <div className="col">
-            <button type="button" className="btn btn-success">
+            <button type="button" className="btn btn-success me-3" onClick={onOrderSubmit}>
               Заказать
+            </button>
+            <button type="button" className="btn btn-secondary" onClick={() => window. location. reload()}>
+              Сбросить
             </button>
           </div>
         </div>

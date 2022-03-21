@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const FormsRow = ({ data }) => {
+const FormsRow = ({ data, type, onCostChange }) => {
   const [currentForm, setCurrentForm] = useState();
   const [currentPrice, setCurrentPrice] = useState(0);
   const [currentFormSizes, setCurrentFormSizes] = useState();
@@ -20,7 +20,7 @@ const FormsRow = ({ data }) => {
     ));
 
     return (
-      <div class="form-floating">
+      <div className="form-floating">
         <select
           className="form-select mb-3"
           aria-label="Default select example"
@@ -30,7 +30,7 @@ const FormsRow = ({ data }) => {
           <option>Не выбрано</option>
           {items}
         </select>
-        <label className="fs-6" for="floatingSelect">
+        <label className="fs-6" htmlFor="floatingSelect">
           Изготовление формы:
         </label>
       </div>
@@ -43,6 +43,7 @@ const FormsRow = ({ data }) => {
   };
 
   const fillSizes = () => {
+    console.log(type);
     const items = data.map((item, i) => {
       if (item.name === currentForm) {
         return (
@@ -56,17 +57,18 @@ const FormsRow = ({ data }) => {
     });
 
     return (
-      <div class="form-floating">
+      <div className="form-floating">
         <select
           className="form-select mb-3"
           id="floatingSelect"
-          aria-label="Default select example"
+          aria-label="Default select example1"
+          data-type={type}
           onChange={onSizeSelect}
         >
           <option data-price="0">Не выбрано</option>
           {items}
         </select>
-        <label className="fs-6" for="floatingSelect">
+        <label className="fs-6" htmlFor="floatingSelect">
           Размер стелы:
         </label>
       </div>
@@ -74,9 +76,9 @@ const FormsRow = ({ data }) => {
   };
 
   const onSizeSelect = (e) => {
-    setCurrentPrice(
-      e.target[e.target.selectedIndex].getAttribute("data-price")
-    );
+    const price = e.target[e.target.selectedIndex].getAttribute("data-price");
+    setCurrentPrice(price);
+    onCostChange(e.target.getAttribute("data-type"), price);
   };
 
   useEffect(() => {
