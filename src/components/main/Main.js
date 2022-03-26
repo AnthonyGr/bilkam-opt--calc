@@ -11,6 +11,7 @@ import "./main.css";
 
 function Main() {
   const [isCarved, setIsCarved] = useState(false);
+  const [markUp, setMarkUp] = useState(1.5);
   const [order, setOrder] = useState({});
   const [totalCost, setTotalCost] = useState(0);
 
@@ -35,6 +36,11 @@ function Main() {
     );
   };
 
+  const onToggle = () => {
+    onCostChange("form", 0);
+    setIsCarved(!isCarved);
+  };
+
   useEffect(() => {
     calcOrderCost();
   });
@@ -44,77 +50,115 @@ function Main() {
       <h1 className="">
         Билкам Опт
         <br />
-        <small className="text-muted">Калькулятор резных памятиков</small>
+        <small className="text-muted">Калькулятор памятиков</small>
       </h1>
 
       <div className="container">
         <hr />
-        <div class="form-check form-check-inline fs-5 me-5">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="inlineRadioOptions"
-            id="inlineRadio1"
-            value="option1"
-            onChange={() => setIsCarved(false)}
-          />
-          <label class="form-check-label" for="inlineRadio1">
-            Простой расчет
-          </label>
-        </div>
-        <div class="form-check form-check-inline fs-5">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="inlineRadioOptions"
-            id="inlineRadio2"
-            value="option2"
-            onChange={() => setIsCarved(true)}
-          />
-          <label class="form-check-label" for="inlineRadio2">
-            Расчет с изготовлением резной формы
-          </label>
+        <div className="row align-items-start">
+          <div className="col">
+            {" "}
+            <div className="form-check form-switch fs-5 text-start">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckDefault"
+                onChange={onToggle}
+              />
+              <label className="form-check-label" for="flexSwitchCheckDefault">
+                Изготовление резной формы
+              </label>
+            </div>
+          </div>
+          <div className="col">
+            <label className="form-check-label fs-5" for="numberStepper">
+              Розничная наценка:&nbsp;&nbsp;
+            </label>
+            <input
+              className="fs-5"
+              id="numberStepper"
+              type="number"
+              step="0.1"
+              value={markUp}
+              onChange={(e) => setMarkUp(e.target.value)}
+              min="1"
+              max="2"
+            />
+          </div>
         </div>
 
         <hr />
+        <div className="row align-items-start fs-5 secondary">
+          <div className="col"></div>
+          <div className="col"></div>
+          <div className="col">
+            <div className="row align-items-start fs-5 text-secondary mb-3">
+              {" "}
+              <div className="col">Оптовая</div>
+              <div className="col">Розничная</div>
+            </div>
+          </div>
+        </div>
         <ItemsRow
           name={"Стела: "}
           type={"stele"}
           data={steles}
           onCostChange={onCostChange}
+          markUp={markUp}
         ></ItemsRow>
         <ItemsRow
           name={"Тумба: "}
           type={"pedestal"}
           data={pedestals}
           onCostChange={onCostChange}
+          markUp={markUp}
         ></ItemsRow>
         <ItemsRow
           name={"Цветник 1: "}
           type={"border-1"}
           data={borders}
           onCostChange={onCostChange}
+          markUp={markUp}
         ></ItemsRow>
         <ItemsRow
           name={"Цветник 2: "}
           type={"border-2"}
           data={borders}
           onCostChange={onCostChange}
+          markUp={markUp}
         ></ItemsRow>
         <ItemsRow
           name={"Цветник 3: "}
           type={"border-3"}
           data={borders}
           onCostChange={onCostChange}
+          markUp={markUp}
         ></ItemsRow>
         <hr />
         {isCarved ? (
-          <FormsRow data={forms} type={"form"} onCostChange={onCostChange} />
+          <FormsRow
+            data={forms}
+            type={"form"}
+            onCostChange={onCostChange}
+            markUp={markUp}
+          />
         ) : null}
-        <div className="row align-items-start">
-          <div className="col">Общая стоимость:</div>
-          <div className="col">{totalCost} р.</div>
+        <div className="row align-items-start fs-4 secondary mb-5">
+          <div className="col"></div>
+          <div className="col">Итоговая стоимость:</div>
           <div className="col">
+            <div className="row align-items-start fs-4">
+              {" "}
+              <div className="col">{totalCost} р.</div>
+              <div className="col">{Math.round(totalCost * markUp)} р.</div>
+            </div>
+          </div>
+        </div>
+        <div className="row align-items-start fs-4 secondary">
+          <div className="col"></div>
+          <div className="col">
+            {" "}
             <button
               type="button"
               className="btn btn-success me-3"
@@ -129,6 +173,13 @@ function Main() {
             >
               Сбросить
             </button>
+          </div>
+          <div className="col">
+            <div className="row align-items-start fs-4">
+              {" "}
+              <div className="col"></div>
+              <div className="col"> </div>
+            </div>
           </div>
         </div>
       </div>
