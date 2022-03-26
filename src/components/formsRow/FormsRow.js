@@ -39,6 +39,7 @@ const FormsRow = ({ data, type, onCostChange }) => {
 
   const onFormSelect = (e) => {
     setCurrentPrice(0);
+    onCostChange("form", 0);
     setCurrentForm(e.target.value);
   };
 
@@ -88,11 +89,14 @@ const FormsRow = ({ data, type, onCostChange }) => {
 
   const formsSelect = fillForms();
   return (
-    <div className="row align-items-start d-flex align-items-center">
-      <div className="col fs-5">{formsSelect}</div>
-      <div className="col">{currentFormSizes}</div>
-      <div className="col fs-5 text-secondary ">{currentPrice}</div>
-    </div>
+    <>
+      <div className="row align-items-start d-flex align-items-center">
+        <div className="col fs-5">{formsSelect}</div>
+        <div className="col">{currentFormSizes}</div>
+        <div className="col fs-5 text-secondary ">{currentPrice}</div>
+      </div>
+      <hr />
+    </>
   );
 };
 export default FormsRow;

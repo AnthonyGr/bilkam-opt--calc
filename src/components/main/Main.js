@@ -10,6 +10,7 @@ import forms from "../../data/forms.json";
 import "./main.css";
 
 function Main() {
+  const [isCarved, setIsCarved] = useState(false);
   const [order, setOrder] = useState({});
   const [totalCost, setTotalCost] = useState(0);
 
@@ -28,9 +29,11 @@ function Main() {
     setTotalCost(cost);
   };
 
-  const onOrderSubmit = () => { 
-    alert(`Вы можете связаться с нами по телефонам: \n 8 963 074 44 47    8 908 939 97 86 \n opt@bilkam.ru`)
-  }
+  const onOrderSubmit = () => {
+    alert(
+      `Вы можете связаться с нами по телефонам: \n 8 963 074 44 47    8 908 939 97 86 \n opt@bilkam.ru`
+    );
+  };
 
   useEffect(() => {
     calcOrderCost();
@@ -45,6 +48,34 @@ function Main() {
       </h1>
 
       <div className="container">
+        <hr />
+        <div class="form-check form-check-inline fs-5 me-5">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="inlineRadio1"
+            value="option1"
+            onChange={() => setIsCarved(false)}
+          />
+          <label class="form-check-label" for="inlineRadio1">
+            Простой расчет
+          </label>
+        </div>
+        <div class="form-check form-check-inline fs-5">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="inlineRadio2"
+            value="option2"
+            onChange={() => setIsCarved(true)}
+          />
+          <label class="form-check-label" for="inlineRadio2">
+            Расчет с изготовлением резной формы
+          </label>
+        </div>
+
         <hr />
         <ItemsRow
           name={"Стела: "}
@@ -77,16 +108,25 @@ function Main() {
           onCostChange={onCostChange}
         ></ItemsRow>
         <hr />
-        <FormsRow data={forms} type={"form"} onCostChange={onCostChange}></FormsRow>
-        <hr />
+        {isCarved ? (
+          <FormsRow data={forms} type={"form"} onCostChange={onCostChange} />
+        ) : null}
         <div className="row align-items-start">
           <div className="col">Общая стоимость:</div>
           <div className="col">{totalCost} р.</div>
           <div className="col">
-            <button type="button" className="btn btn-success me-3" onClick={onOrderSubmit}>
+            <button
+              type="button"
+              className="btn btn-success me-3"
+              onClick={onOrderSubmit}
+            >
               Заказать
             </button>
-            <button type="button" className="btn btn-secondary" onClick={() => window. location. reload()}>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => window.location.reload()}
+            >
               Сбросить
             </button>
           </div>
