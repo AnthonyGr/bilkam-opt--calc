@@ -3,6 +3,7 @@ import ItemsRow from "../itemsRow/ItemsRow";
 import FormsRow from "../formsRow/FormsRow";
 
 import steles from "../../data/steles.json";
+import stelesAll from "../../data/steles-all.json";
 import pedestals from "../../data/pedestals.json";
 import borders from "../../data/borders.json";
 import forms from "../../data/forms.json";
@@ -39,6 +40,7 @@ function Main() {
 
   const onCarvedToggle = () => {
     onCostChange("form", 0);
+    onCostChange("stele", 0);
     setIsCarved(!isCarved);
   };
 
@@ -49,6 +51,8 @@ function Main() {
   useEffect(() => {
     calcOrderCost();
   });
+
+  const stelesType = isCarved ? steles : stelesAll;
 
   return (
     <div className="main">
@@ -91,7 +95,7 @@ function Main() {
               </label>
               {isRetail ? (
                 <input
-                  className="fs-5"
+                  className="fs-5 ms-3"
                   id="numberStepper"
                   type="number"
                   step="0.1"
@@ -135,7 +139,7 @@ function Main() {
         <ItemsRow
           name={"Стела: "}
           type={"stele"}
-          data={steles}
+          data={isCarved ? steles : stelesAll}
           onCostChange={onCostChange}
           markUp={markUp}
           isRetail={isRetail}
