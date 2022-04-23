@@ -75,7 +75,10 @@ function Main() {
                 id="flexSwitchCheckDefault"
                 onChange={onCarvedToggle}
               />
-              <label className="form-check-label" for="flexSwitchCheckDefault">
+              <label
+                className="form-check-label"
+                htmlFor="flexSwitchCheckDefault"
+              >
                 Изготовление резной формы
               </label>
             </div>
@@ -90,7 +93,10 @@ function Main() {
                 id="flexSwitchCheckDefault"
                 onChange={onRetailToggle}
               />
-              <label className="form-check-label" for="flexSwitchCheckDefault">
+              <label
+                className="form-check-label"
+                htmlFor="flexSwitchCheckDefault"
+              >
                 Расчет розничной стоимости
               </label>
               {isRetail ? (
@@ -107,21 +113,6 @@ function Main() {
               ) : null}
             </div>
           </div>
-          {/* <div className="col">
-            <label className="form-check-label fs-5" for="numberStepper">
-              Розничная наценка:&nbsp;&nbsp;
-            </label>
-            <input
-              className="fs-5"
-              id="numberStepper"
-              type="number"
-              step="0.1"
-              value={markUp}
-              onChange={(e) => setMarkUp(e.target.value)}
-              min="1"
-              max="2"
-            />
-          </div> */}
         </div>
 
         <hr />
@@ -194,7 +185,7 @@ function Main() {
               {" "}
               <div className="col">{totalCost} р.</div>
               <div className="col">
-                {isRetail ? Math.round(totalCost * markUp) : null}
+                {isRetail ? Math.round(totalCost * markUp) + ` р.` : null}
               </div>
             </div>
           </div>
