@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const FormsRow = ({ data, type, onCostChange, markUp }) => {
+const FormsRow = ({ data, type, onCostChange, markUp, isRetail }) => {
   const [currentForm, setCurrentForm] = useState();
   const [currentPrice, setCurrentPrice] = useState(0);
   const [currentFormSizes, setCurrentFormSizes] = useState();
@@ -98,7 +98,9 @@ const FormsRow = ({ data, type, onCostChange, markUp }) => {
           <div className="col fs-5 text-secondary">
             <div className="row align-items-start">
               <div className="col">{currentPrice}</div>
-              <div className="col">{Math.round(currentPrice * markUp)}</div>
+              <div className="col">
+                {isRetail ? Math.round(currentPrice * markUp) : null}
+              </div>
             </div>
           </div>
         </div>

@@ -11,6 +11,7 @@ import "./main.css";
 
 function Main() {
   const [isCarved, setIsCarved] = useState(false);
+  const [isRetail, setIsRetail] = useState(false);
   const [markUp, setMarkUp] = useState(1.5);
   const [order, setOrder] = useState({});
   const [totalCost, setTotalCost] = useState(0);
@@ -36,9 +37,13 @@ function Main() {
     );
   };
 
-  const onToggle = () => {
+  const onCarvedToggle = () => {
     onCostChange("form", 0);
     setIsCarved(!isCarved);
+  };
+
+  const onRetailToggle = () => {
+    setIsRetail(!isRetail);
   };
 
   useEffect(() => {
@@ -64,7 +69,7 @@ function Main() {
                 type="checkbox"
                 role="switch"
                 id="flexSwitchCheckDefault"
-                onChange={onToggle}
+                onChange={onCarvedToggle}
               />
               <label className="form-check-label" for="flexSwitchCheckDefault">
                 Изготовление резной формы
@@ -72,6 +77,33 @@ function Main() {
             </div>
           </div>
           <div className="col">
+            {" "}
+            <div className="form-check form-switch fs-5 text-start">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckDefault"
+                onChange={onRetailToggle}
+              />
+              <label className="form-check-label" for="flexSwitchCheckDefault">
+                Расчет розничной стоимости
+              </label>
+              {isRetail ? (
+                <input
+                  className="fs-5"
+                  id="numberStepper"
+                  type="number"
+                  step="0.1"
+                  value={markUp}
+                  onChange={(e) => setMarkUp(e.target.value)}
+                  min="1"
+                  max="2"
+                />
+              ) : null}
+            </div>
+          </div>
+          {/* <div className="col">
             <label className="form-check-label fs-5" for="numberStepper">
               Розничная наценка:&nbsp;&nbsp;
             </label>
@@ -85,7 +117,7 @@ function Main() {
               min="1"
               max="2"
             />
-          </div>
+          </div> */}
         </div>
 
         <hr />
@@ -96,7 +128,7 @@ function Main() {
             <div className="row align-items-start fs-5 text-secondary mb-3">
               {" "}
               <div className="col">Оптовая</div>
-              <div className="col">Розничная</div>
+              <div className="col">{isRetail ? `Розничная` : null}</div>
             </div>
           </div>
         </div>
@@ -106,6 +138,7 @@ function Main() {
           data={steles}
           onCostChange={onCostChange}
           markUp={markUp}
+          isRetail={isRetail}
         ></ItemsRow>
         <ItemsRow
           name={"Тумба: "}
@@ -113,6 +146,7 @@ function Main() {
           data={pedestals}
           onCostChange={onCostChange}
           markUp={markUp}
+          isRetail={isRetail}
         ></ItemsRow>
         <ItemsRow
           name={"Цветник 1: "}
@@ -120,6 +154,7 @@ function Main() {
           data={borders}
           onCostChange={onCostChange}
           markUp={markUp}
+          isRetail={isRetail}
         ></ItemsRow>
         <ItemsRow
           name={"Цветник 2: "}
@@ -127,6 +162,7 @@ function Main() {
           data={borders}
           onCostChange={onCostChange}
           markUp={markUp}
+          isRetail={isRetail}
         ></ItemsRow>
         <ItemsRow
           name={"Цветник 3: "}
@@ -134,6 +170,7 @@ function Main() {
           data={borders}
           onCostChange={onCostChange}
           markUp={markUp}
+          isRetail={isRetail}
         ></ItemsRow>
         <hr />
         {isCarved ? (
@@ -142,6 +179,7 @@ function Main() {
             type={"form"}
             onCostChange={onCostChange}
             markUp={markUp}
+            isRetail={isRetail}
           />
         ) : null}
         <div className="row align-items-start fs-4 secondary mb-5">
@@ -151,7 +189,9 @@ function Main() {
             <div className="row align-items-start fs-4">
               {" "}
               <div className="col">{totalCost} р.</div>
-              <div className="col">{Math.round(totalCost * markUp)} р.</div>
+              <div className="col">
+                {isRetail ? Math.round(totalCost * markUp) : null}
+              </div>
             </div>
           </div>
         </div>

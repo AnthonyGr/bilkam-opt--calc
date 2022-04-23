@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ItemsRow = ({ name, type, data, onCostChange, markUp }) => {
+const ItemsRow = ({ name, type, data, onCostChange, markUp, isRetail }) => {
   const [selectedItem, setSelectedItem] = useState(0);
   const [currentPrice, setCurrentPrice] = useState(0);
 
@@ -40,7 +40,9 @@ const ItemsRow = ({ name, type, data, onCostChange, markUp }) => {
       <div className="col fs-5 text-secondary">
         <div className="row align-items-start">
           <div className="col">{currentPrice}</div>
-          <div className="col">{Math.round(currentPrice * markUp)}</div>
+          <div className="col">
+            {isRetail ? Math.round(currentPrice * markUp) : null}
+          </div>
         </div>
       </div>
     </div>
