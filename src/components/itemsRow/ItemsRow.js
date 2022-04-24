@@ -42,10 +42,10 @@ const ItemsRow = ({ name, type, data, onCostChange, markUp, isRetail }) => {
 
   const element = fillSelect();
   return (
-    <div className="row align-items-start">
-      <div className="col fs-5">{name}</div>
-      <div className="col">{element}</div>
-      <div className="col fs-5 text-secondary">
+    <div className="row align-items-start gy-3">
+      <div className="col-lg-4 col-md-12 col-sm-12 col-12 fs-5">{name}</div>
+      <div className="col-lg-4 col-md-8 col-sm-8 col-8">{element}</div>
+      <div className="col-lg-4 col-md-4 col-sm-4 col-4 fs-5 text-secondary">
         <div className="row align-items-start">
           <div className="col">{currentPrice}</div>
           <div className="col">

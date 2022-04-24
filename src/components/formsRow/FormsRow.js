@@ -91,9 +91,9 @@ const FormsRow = ({ data, type, onCostChange, markUp, isRetail }) => {
   return (
     <>
       <div className="row align-items-start d-flex align-items-center">
-        <div className="col fs-5">{formsSelect}</div>
-        <div className="col">{currentFormSizes}</div>
-        <div className="col fs-5 text-secondary ">
+        <div className="col-md-4 col-8 fs-5">{formsSelect}</div>
+        <div className="col-md-4 col-8">{currentFormSizes}</div>
+        <div className="col-md-4 col-4 fs-5 text-secondary ">
           {" "}
           <div className="col fs-5 text-secondary">
             <div className="row align-items-start">
