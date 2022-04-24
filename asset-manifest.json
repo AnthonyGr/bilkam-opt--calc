@@ -1,15 +1,13 @@
 {
   "files": {
-    "main.css": "/bilkam-opt--calc/static/css/main.2d2cab0e.css",
-    "main.js": "/bilkam-opt--calc/static/js/main.cc4e4623.js",
-    "static/js/787.5619fd79.chunk.js": "/bilkam-opt--calc/static/js/787.5619fd79.chunk.js",
+    "main.css": "/bilkam-opt--calc/static/css/main.fc8e0820.css",
+    "main.js": "/bilkam-opt--calc/static/js/main.248bb298.js",
     "index.html": "/bilkam-opt--calc/index.html",
-    "main.2d2cab0e.css.map": "/bilkam-opt--calc/static/css/main.2d2cab0e.css.map",
-    "main.cc4e4623.js.map": "/bilkam-opt--calc/static/js/main.cc4e4623.js.map",
-    "787.5619fd79.chunk.js.map": "/bilkam-opt--calc/static/js/787.5619fd79.chunk.js.map"
+    "main.fc8e0820.css.map": "/bilkam-opt--calc/static/css/main.fc8e0820.css.map",
+    "main.248bb298.js.map": "/bilkam-opt--calc/static/js/main.248bb298.js.map"
   },
   "entrypoints": [
-    "static/css/main.2d2cab0e.css",
-    "static/js/main.cc4e4623.js"
+    "static/css/main.fc8e0820.css",
+    "static/js/main.248bb298.js"
   ]
 }
